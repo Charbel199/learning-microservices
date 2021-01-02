@@ -19,9 +19,11 @@ namespace IdentityService.Data
                 serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
                 var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
-
+                
+                //Applies any pending migration and creates table if not already created
                 context.Database.Migrate();
 
+                //If not already initialized: Initialize Clients, Api Resources and Api Scopes from Config file
                 if (!context.Clients.Any())
                 {
  

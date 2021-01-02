@@ -39,6 +39,7 @@ namespace IdentityService
 
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
+            //Adding identity server db context
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddConfigurationStore(options =>

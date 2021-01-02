@@ -7,6 +7,7 @@ namespace IdentityService.Configuration
     {
         public static List<Client> Clients = new List<Client>
         {
+            //Adding initial Clients
             new Client
             {
                 ClientId = "the-big-client",
@@ -47,6 +48,7 @@ namespace IdentityService.Configuration
 
         public static List<ApiResource> ApiResources = new List<ApiResource>
         {
+            //Adding initial API resource
             new ApiResource
             {
                 Name = "my-api",
@@ -61,6 +63,7 @@ namespace IdentityService.Configuration
 
         public static IEnumerable<ApiScope> ApiScopes = new List<ApiScope>
         {
+            //Adding initial API scopes
             new ApiScope("read"),
             new ApiScope("write")
         };
