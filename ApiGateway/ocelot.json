@@ -1,0 +1,21 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/test",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/github",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    }
+    ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5021"
+  }
+}
