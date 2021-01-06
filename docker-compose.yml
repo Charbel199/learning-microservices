@@ -12,7 +12,7 @@ services:
     restart: always
     container_name: identityserviceapi
     depends_on:
-      - db
+      - identityservicestore
   
   
   apigateway:
@@ -23,14 +23,23 @@ services:
       - "8080:80"
 
 
-  db:
+  identityservicestore:
     image: postgres
     restart: always
-    container_name: postgres_db
+    container_name: identity_db
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - db_vol:/var/lib/postgresql/data
   
+  githubservicestore:
+    image: postgres
+    restart: always
+    container_name: github_db
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - db_vol2:/var/lib/postgresql/data
 volumes:
   db_vol:
+  db_vol2:
