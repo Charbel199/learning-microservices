@@ -35,8 +35,8 @@ namespace IdentityService
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("IdentityConnection");
-          
 
+            Console.WriteLine("Connection string: "+connectionString);
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             //Adding identity server db context
