@@ -37,6 +37,7 @@ namespace IdentityService
             var connectionString = Configuration.GetConnectionString("IdentityConnection");
 
             Console.WriteLine("Connection string: "+connectionString);
+            Console.WriteLine();
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             //Adding identity server db context
@@ -58,7 +59,6 @@ namespace IdentityService
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             DatabaseInitializer.PopulateIdentityServer(app);
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

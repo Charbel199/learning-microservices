@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GithubService.Jobs;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,10 +30,21 @@ namespace GithubService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHangfire(config =>
+                config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                    .UseSimpleAssemblyNameTypeSerializer()
+                    .UseDefaultTypeSerializer()
+                    .UseMemoryStorage());
+            services.AddHangfireServer();
+            services.AddSingleton<IPrintJob, PrintJob>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
+            IRecurringJobManager recurringJobManager,
+            IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -47,6 +61,13 @@ namespace GithubService
             app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
             
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+
+            app.UseHangfireDashboard();
+            recurringJobManager.AddOrUpdate(
+                "Run every minute",
+                () => serviceProvider.GetService<IPrintJob>().print(),
+                "* * * * *");
         }
     }
 }

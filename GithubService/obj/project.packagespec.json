@@ -26,6 +26,22 @@
   "frameworks": {
     "netcoreapp5.0": {
       "dependencies": {
+        "HangFire": {
+          "target": "Package",
+          "version": "[1.7.18, )"
+        },
+        "HangFire.Core": {
+          "target": "Package",
+          "version": "[1.7.18, )"
+        },
+        "Hangfire.AspNetCore": {
+          "target": "Package",
+          "version": "[1.7.18, )"
+        },
+        "Hangfire.MemoryStorage": {
+          "target": "Package",
+          "version": "[1.7.0, )"
+        },
         "Microsoft.AspNetCore.Authentication.JwtBearer": {
           "target": "Package",
           "version": "[5.0.1, )",
