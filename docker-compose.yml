@@ -1,0 +1,36 @@
+version: "3"
+services:
+  githubapi:
+    image: ${ID}/githubserviceapi:1.0
+    restart: always
+    container_name: githubserviceapi
+    depends_on:
+      - apigateway
+    
+  identityapi:
+    image: ${ID}/identityserviceapi:1.0
+    restart: always
+    container_name: identityserviceapi
+    depends_on:
+      - db
+  
+  
+  apigateway:
+    image: ${ID}/apigateway:1.0
+    container_name: api
+    restart: always
+    ports:
+      - "8080:80"
+
+
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres_db
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - db_vol:/var/lib/postgresql/data
+  
+volumes:
+  db_vol:
