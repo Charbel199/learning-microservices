@@ -22,10 +22,6 @@ namespace IdentityService.Configuration
                     new ClientClaim("companyName", "John Doe LTD")
                     //more custom claims depending on the logic of the api
                 },
-                AllowedCorsOrigins = new List<string>
-                {
-                    "https://localhost:5001",
-                },
                 AccessTokenLifetime = 86400
             },
             new Client
@@ -36,11 +32,7 @@ namespace IdentityService.Configuration
                 {
                     new Secret("secret".Sha256())
                 },
-                AllowedScopes = { "my-api", "write", "read" },
-                AllowedCorsOrigins = new List<string>
-                {
-                    "https://localhost:5001",
-                },
+                AllowedScopes = { "my-api", "write", "read", "identitygithubservice" },
                 AccessTokenLifetime = 86400
             }
         
@@ -53,6 +45,16 @@ namespace IdentityService.Configuration
             {
                 Name = "my-api",
                 DisplayName = "My Fancy Secured API",
+                Scopes = new List<string>
+                {
+                    "write",
+                    "read"
+                }
+            },
+            new ApiResource
+            {
+                Name = "identitygithubservice",
+                DisplayName = "identitygithubservice",
                 Scopes = new List<string>
                 {
                     "write",
