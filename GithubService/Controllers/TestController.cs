@@ -10,7 +10,7 @@ namespace GithubService.Controllers
         public ActionResult<string> Gettest()
         {
           
-            return Ok("Nice");
+            return Ok("Nice2");
         } 
     }
     

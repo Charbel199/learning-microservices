@@ -5,17 +5,30 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8080
+          "Host": "githubapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/github",
       "UpstreamHttpMethod": [
         "Get"
       ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identityapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/connect",
+      "UpstreamHttpMethod": [
+        "Get","Post"
+      ]
     }
     ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:8083"
   }
 }
