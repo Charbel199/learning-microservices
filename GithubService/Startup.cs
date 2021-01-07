@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GithubService.Jobs;
 using Hangfire;
 using Hangfire.MemoryStorage;
@@ -36,7 +37,8 @@ namespace GithubService
                     .UseDefaultTypeSerializer()
                     .UseMemoryStorage());
             services.AddHangfireServer();
-            services.AddSingleton<IPrintJob, PrintJob>();
+            services.AddSingleton<IGithubProjectsJob, GithubProjectsJob>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +46,8 @@ namespace GithubService
             IApplicationBuilder app,
             IWebHostEnvironment env,
             IRecurringJobManager recurringJobManager,
-            IServiceProvider serviceProvider)
+            IServiceProvider serviceProvider,
+            IConfiguration config)
         {
             if (env.IsDevelopment())
             {
@@ -66,8 +69,8 @@ namespace GithubService
             app.UseHangfireDashboard();
             recurringJobManager.AddOrUpdate(
                 "Run every minute",
-                () => serviceProvider.GetService<IPrintJob>().print(),
-                "* * * * *");
+                () => serviceProvider.GetService<IGithubProjectsJob>().GetProjects(),
+                config["GithubJob:Scheduler:FetchProjectsChrono"]);
         }
     }
 }
