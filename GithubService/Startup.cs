@@ -82,7 +82,7 @@ namespace GithubService
 
             app.UseHangfireDashboard();
             recurringJobManager.AddOrUpdate(
-                "Run every minute",
+                "Github Projects",
                 () => serviceProvider.GetService<IGithubProjectsJob>().GetProjects(),
                 config["GithubJob:Scheduler:FetchProjectsChrono"]);
         }
