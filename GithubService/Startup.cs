@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GithubService.Jobs;
+using GithubService.Repositories;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,8 +39,17 @@ namespace GithubService
                     .UseDefaultTypeSerializer()
                     .UseMemoryStorage());
             services.AddHangfireServer();
-            services.AddSingleton<IGithubProjectsJob, GithubProjectsJob>();
+            
+            services.AddScoped<IGithubProjectsJob, GithubProjectsJob>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            
+            
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
+            services.AddDbContext<ProjectContext>(opt =>
+                opt.UseNpgsql(Configuration.GetConnectionString("ProjectConnection")));
+            services.AddCors();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,8 +58,11 @@ namespace GithubService
             IWebHostEnvironment env,
             IRecurringJobManager recurringJobManager,
             IServiceProvider serviceProvider,
-            IConfiguration config)
+            IConfiguration config,
+            ProjectContext projectContext)
         {
+            projectContext.Database.Migrate();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
