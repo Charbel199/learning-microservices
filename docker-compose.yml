@@ -13,14 +13,38 @@ services:
     container_name: identityserviceapi
     depends_on:
       - identityservicestore
+
+  mailapi:
+    image: ${ID}/mailserviceapi:1.0
+    restart: always
+    container_name: mailserviceapi
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8083"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - C:\Users\Intel\.aspnet\https:/root/.aspnet/https/
+    ports:
+      - "8082:80"
+      - "8083:443"
+    
   
   
   apigateway:
     image: ${ID}/apigateway:1.0
     container_name: api
     restart: always
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8081"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - C:\Users\Intel\.aspnet\https:/root/.aspnet/https/
     ports:
       - "8080:80"
+      - "8081:443"
 
 
   identityservicestore:

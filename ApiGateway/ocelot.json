@@ -27,6 +27,21 @@
       "UpstreamHttpMethod": [
         "Get","Post"
       ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/mail/send",
+      "DownstreamScheme": "https",
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mailapi",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/mail/send",
+      "UpstreamHttpMethod": [
+        "Get","Post"
+      ]
     }
     ],
   "GlobalConfiguration": {
