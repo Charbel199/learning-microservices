@@ -7,7 +7,7 @@ namespace GithubService.Repositories
     public interface IProjectRepository
     {
         bool SaveChanges();
-        IEnumerable<Project> GetAllProjects();
+        List<Project> GetAllProjects();
         Project GetProjectById(int id);
         void AddProject(Project project);
         void AddAllProjects(List<Project> projects);

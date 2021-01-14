@@ -24,11 +24,13 @@ namespace MailService.Services
                 mailMessage.To.Add(_config["EmailReceiver"]);
                 mailMessage.IsBodyHtml = true;
                 mailMessage.Subject = mail.Subject;
+                
                 string content = "Name: " + mail.Name;
                 content += "<br/> Address: " + mail.EmailAddress;
                 content += "<br/> Message: " + mail.Message;
                 Console.WriteLine("Content " + content);
                 mailMessage.Body = content;
+                
                 SmtpClient smtpClient = new SmtpClient(" smtp.gmail.com");
                 smtpClient.Port = 587;
                 NetworkCredential networkCredential = new NetworkCredential(_config["EmailSender"],_config["EmailSenderPassword"]);

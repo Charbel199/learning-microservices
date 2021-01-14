@@ -27,7 +27,7 @@ namespace GithubService.Handlers.CommandHandlers
             _projectRepository.AddProject(_mapper.Map<Project>(request));
             AddProjectResponseModel response = new AddProjectResponseModel
             {
-                Id = request.Id,
+                Id = request.Project.Id,
                 IsSuccess = true
             };
             return response;

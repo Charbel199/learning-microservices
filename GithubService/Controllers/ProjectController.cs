@@ -1,10 +1,12 @@
-﻿using GithubService.Models.RequestModels.QueryRequestModels;
+﻿using System.Threading.Tasks;
+using GithubService.Models.RequestModels.QueryRequestModels;
+using GithubService.Models.ResponseModels.QueryResponseModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GithubService.Controllers
 {
-    [Route("api2/test")]
+    [Route("api/test")]
     [ApiController]
     public class ProjectController: ControllerBase
     {
@@ -16,13 +18,18 @@ namespace GithubService.Controllers
         }
 
         [HttpGet("project")]
-        public IActionResult GetProjectById([FromQuery] GetProjectByIdRequestModel requestModel)
+        public  IActionResult GetProjectById([FromQuery] GetProjectByIdRequestModel requestModel)
+        {
+            var response =  _mediator.Send(requestModel);
+            return Ok(response);
+        }
+        
+        [HttpGet("projects")]
+        public IActionResult GetAllProjects([FromQuery] GetAllProjectsRequestModel requestModel)
         {
             var response = _mediator.Send(requestModel);
             return Ok(response);
         }
-        
-        
         
         
         

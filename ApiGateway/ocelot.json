@@ -1,7 +1,7 @@
 ﻿{
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/test",
+      "DownstreamPathTemplate": "/api/test/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +9,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/github",
+      "UpstreamPathTemplate": "/github/{everything}",
       "UpstreamHttpMethod": [
         "Get"
       ]

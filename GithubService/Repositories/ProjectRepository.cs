@@ -18,7 +18,7 @@ namespace GithubService.Repositories
             return (_context.SaveChanges() >= 0);
         }
 
-        public IEnumerable<Project> GetAllProjects()
+        public List<Project> GetAllProjects()
         {
             return _context.Projects.ToList();
         }

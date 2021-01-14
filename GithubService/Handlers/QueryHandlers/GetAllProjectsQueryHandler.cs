@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -10,25 +11,24 @@ using MediatR;
 
 namespace GithubService.Handlers.QueryHandlers
 {
-    public class GetProjectByIdQueryHandler: IRequestHandler<GetProjectByIdRequestModel, GetProjectByIdResponseModel>
+    public class GetAllProjectsQueryHandler: IRequestHandler<GetAllProjectsRequestModel, GetAllProjectsResponseModel>
     {
         private readonly IProjectRepository _projectRepository;
         private readonly IMapper _mapper;
 
-        public GetProjectByIdQueryHandler(
+        public GetAllProjectsQueryHandler(
             IProjectRepository projectRepository,
             IMapper mapper)
         {
             _projectRepository = projectRepository;
             _mapper = mapper;
         }
-        
-        public async Task<GetProjectByIdResponseModel> Handle(GetProjectByIdRequestModel request, CancellationToken cancellationToken)
+        public async Task<GetAllProjectsResponseModel> Handle(GetAllProjectsRequestModel request, CancellationToken cancellationToken)
         {
-            Project project = _projectRepository.GetProjectById(request.Id);
-            GetProjectByIdResponseModel responseModel = new GetProjectByIdResponseModel()
+            List<Project> projects = _projectRepository.GetAllProjects().ToList();
+            GetAllProjectsResponseModel responseModel = new GetAllProjectsResponseModel()
             {
-                Project = project
+                Projects = projects
             };
             return responseModel;
         }

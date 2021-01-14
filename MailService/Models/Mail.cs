@@ -1,6 +1,6 @@
 ﻿namespace MailService.Models
 {
-    public class Email
+    public class Mail
     {
         public string Name { get; set; }
         public string EmailAddress { get; set; }
