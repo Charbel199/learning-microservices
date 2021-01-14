@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using GithubService.Handlers.QueryHandlers;
 using GithubService.Jobs;
 using GithubService.Repositories;
 using Hangfire;
@@ -17,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MediatR;
 
 namespace GithubService
 {
@@ -33,6 +36,7 @@ namespace GithubService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+       
             services.AddHangfire(config =>
                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                     .UseSimpleAssemblyNameTypeSerializer()
@@ -41,14 +45,13 @@ namespace GithubService
             services.AddHangfireServer();
             
             services.AddScoped<IGithubProjectsJob, GithubProjectsJob>();
-            services.AddScoped<IProjectRepository, ProjectRepository>();
-            
-            
+            services.AddScoped(typeof(IProjectRepository), typeof(ProjectRepository));
+            services.AddMediatR(typeof(GetProjectByIdQueryHandler));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            
             services.AddDbContext<ProjectContext>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("ProjectConnection")));
             services.AddCors();
+            
             
         }
 

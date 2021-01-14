@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using GithubService.DTOs;
 using GithubService.Models;
+using GithubService.Models.RequestModels.CommandRequestModels;
+using GithubService.Models.ResponseModels.QueryResponseModels;
 
 namespace GithubService.Profiles
 {
@@ -20,6 +22,9 @@ namespace GithubService.Profiles
                 .ForMember(
                     dest => dest.Link,
                     opt=> opt.MapFrom(src => src.Html_Url));
+            CreateMap<Project, GetProjectByIdResponseModel>();
+            CreateMap<AddProjectRequestModel, Project>();
+            CreateMap<Project, AddProjectRequestModel>();
         }
     }
 }

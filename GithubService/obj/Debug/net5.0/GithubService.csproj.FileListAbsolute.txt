@@ -71,3 +71,5 @@ C:\Users\Intel\Desktop\Projects\MyWebsite\GithubService\bin\Debug\net5.0\Npgsql.
 C:\Users\Intel\Desktop\Projects\MyWebsite\GithubService\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Intel\Desktop\Projects\MyWebsite\GithubService\bin\Debug\net5.0\Humanizer.dll
 C:\Users\Intel\Desktop\Projects\MyWebsite\GithubService\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Intel\Desktop\Projects\MyWebsite\GithubService\bin\Debug\net5.0\MediatR.dll
+C:\Users\Intel\Desktop\Projects\MyWebsite\GithubService\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll

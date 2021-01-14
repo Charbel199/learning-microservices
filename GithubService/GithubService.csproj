@@ -11,6 +11,8 @@
         <PackageReference Include="Hangfire.AspNetCore" Version="1.7.18" />
         <PackageReference Include="HangFire.Core" Version="1.7.18" />
         <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
+        <PackageReference Include="MediatR" Version="9.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
