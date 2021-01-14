@@ -56,8 +56,9 @@ namespace GithubService.Jobs
             string apiResponse = await response.Content.ReadAsStringAsync();
             List<GithubApiResponse> githubProjects = JsonConvert.DeserializeObject<List<GithubApiResponse>>(apiResponse);
             List<Project> projects = _mapper.Map<List<Project>>(githubProjects);
+            
             //Delete old projects:
-            _projectRepository.DeleteAllProjects();
+            await _projectRepository.DeleteAllProjects();
             //Add updated projects:
             AddAllProjectsRequestModel requestModel = new AddAllProjectsRequestModel()
             {

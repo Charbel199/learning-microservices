@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace GithubService.Handlers.QueryHandlers
         }
         public async Task<GetAllProjectsResponseModel> Handle(GetAllProjectsRequestModel request, CancellationToken cancellationToken)
         {
-            List<Project> projects = _projectRepository.GetAllProjects().ToList();
+            List<Project> projects = await _projectRepository.GetAllProjects();
             GetAllProjectsResponseModel responseModel = new GetAllProjectsResponseModel()
             {
                 Projects = projects

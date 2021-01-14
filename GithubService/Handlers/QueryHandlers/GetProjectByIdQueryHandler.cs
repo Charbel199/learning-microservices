@@ -25,7 +25,7 @@ namespace GithubService.Handlers.QueryHandlers
         
         public async Task<GetProjectByIdResponseModel> Handle(GetProjectByIdRequestModel request, CancellationToken cancellationToken)
         {
-            Project project = _projectRepository.GetProjectById(request.Id);
+            Project project = await _projectRepository.GetProjectById(request.Id);
             GetProjectByIdResponseModel responseModel = new GetProjectByIdResponseModel()
             {
                 Project = project

@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GithubService.Models;
 
 namespace GithubService.Repositories
 {
     public interface IProjectRepository
     {
-        bool SaveChanges();
-        List<Project> GetAllProjects();
-        Project GetProjectById(int id);
-        void AddProject(Project project);
-        void AddAllProjects(List<Project> projects);
-        void DeleteAllProjects();
+        Task<List<Project>> GetAllProjects();
+        Task<Project> GetProjectById(int id);
+        Task<bool> AddProject(Project project);
+        Task<bool> AddAllProjects(List<Project> projects);
+        Task<bool> DeleteAllProjects();
     }
 }

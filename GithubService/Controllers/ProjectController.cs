@@ -18,16 +18,16 @@ namespace GithubService.Controllers
         }
 
         [HttpGet("project")]
-        public  IActionResult GetProjectById([FromQuery] GetProjectByIdRequestModel requestModel)
+        public async Task<IActionResult> GetProjectById([FromQuery] GetProjectByIdRequestModel requestModel)
         {
-            var response =  _mediator.Send(requestModel);
+            var response =  await _mediator.Send(requestModel);
             return Ok(response);
         }
         
         [HttpGet("projects")]
-        public IActionResult GetAllProjects([FromQuery] GetAllProjectsRequestModel requestModel)
+        public async Task<IActionResult> GetAllProjects([FromQuery] GetAllProjectsRequestModel requestModel)
         {
-            var response = _mediator.Send(requestModel);
+            var response = await _mediator.Send(requestModel);
             return Ok(response);
         }
         
