@@ -24,7 +24,7 @@ namespace GithubService.Handlers.CommandHandlers
         
         public async Task<AddProjectResponseModel> Handle(AddProjectRequestModel request, CancellationToken cancellationToken)
         {
-            _projectRepository.AddProject(_mapper.Map<Project>(request));
+            await _projectRepository.AddProject(_mapper.Map<Project>(request));
             AddProjectResponseModel response = new AddProjectResponseModel
             {
                 Id = request.Project.Id,

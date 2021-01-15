@@ -27,7 +27,7 @@ namespace GithubService.Handlers.CommandHandlers
         {
             List<Project> projects = new List<Project>();
             request.Projects.ForEach(x => projects.Add( _mapper.Map<Project>(x)));
-            _projectRepository.AddAllProjects(projects);
+            await _projectRepository.AddAllProjects(projects);
             AddAllProjectsResponseModel response = new AddAllProjectsResponseModel()
             {
                 IsSuccess = true
