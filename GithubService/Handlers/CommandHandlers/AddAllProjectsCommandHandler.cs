@@ -25,8 +25,7 @@ namespace GithubService.Handlers.CommandHandlers
         }
         public async Task<AddAllProjectsResponseModel> Handle(AddAllProjectsRequestModel request, CancellationToken cancellationToken)
         {
-            List<Project> projects = new List<Project>();
-            request.Projects.ForEach(x => projects.Add( _mapper.Map<Project>(x)));
+            List<Project> projects = request.Projects;
             await _projectRepository.AddAllProjects(projects);
             AddAllProjectsResponseModel response = new AddAllProjectsResponseModel()
             {

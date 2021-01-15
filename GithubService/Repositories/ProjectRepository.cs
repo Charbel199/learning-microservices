@@ -35,11 +35,6 @@ namespace GithubService.Repositories
             {
                 throw new ArgumentNullException(nameof(project));
             }
-            Console.WriteLine("IN ADD PROJECT");
-            Console.WriteLine("Current project: ");
-            Console.WriteLine(project.Id);
-            Console.WriteLine(project.Language);
-            Console.WriteLine(project.Size);
             await _context.Projects.AddAsync(project);
             await _context.SaveChangesAsync();
             return true;
@@ -54,14 +49,16 @@ namespace GithubService.Repositories
                 throw new ArgumentNullException(nameof(projects));
             }
             await _context.AddRangeAsync(projects);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> DeleteAllProjects()
         {
+            Console.WriteLine("Deleting all projects");
             _context.Projects.RemoveRange(_context.Projects);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            Console.WriteLine("Done deleting projects");
             return true;
         }
     }

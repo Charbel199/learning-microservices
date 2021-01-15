@@ -36,8 +36,42 @@ namespace GithubService.Jobs
         static readonly HttpClient client = new HttpClient();
         
         public async Task<string> GetProjects()
-        {    
-            Console.WriteLine("Starting Github projects fetch job ...");
+        {
+            try
+            {
+                Console.WriteLine("Starting Github projects fetch job ...");
+                Console.WriteLine("Fetching projects ...");
+                List<Project> projects = await FetchProjects();
+                Console.WriteLine("Fetched projects ...");
+
+                //Delete old projects:
+                DeleteAllProjectsRequestModel deleteModel = new DeleteAllProjectsRequestModel();
+                DeleteAllProjectsResponseModel deleteResponse = await _mediator.Send(deleteModel);
+                Console.WriteLine("Projects removed ...");
+                Console.WriteLine("Delete response: " + deleteResponse.IsSuccess);
+                //Add updated projects:
+                AddAllProjectsRequestModel addModel = new AddAllProjectsRequestModel()
+                {
+                    Projects = projects
+                };
+                AddAllProjectsResponseModel addResponse = await _mediator.Send(addModel);
+
+                Console.WriteLine("Projects added ...");
+                Console.WriteLine("Add response: " + addResponse.IsSuccess);
+
+
+                Console.WriteLine("Finished Github projects fetch job ...");
+                return "Success";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Caught an error: "+e.Message);
+                return "Failed";
+            }
+        }
+
+        public async Task<List<Project>> FetchProjects()
+        {
             string endpoint = _config["GithubJob:GithubApi"];
             var request = new HttpRequestMessage
             {
@@ -50,25 +84,13 @@ namespace GithubService.Jobs
                     }
                 }
             };
-            
+            Console.WriteLine("In fetch projects");
             HttpResponseMessage response = await client.SendAsync(request);
             Console.WriteLine("Status code: " +response.StatusCode);
             string apiResponse = await response.Content.ReadAsStringAsync();
             List<GithubApiResponse> githubProjects = JsonConvert.DeserializeObject<List<GithubApiResponse>>(apiResponse);
             List<Project> projects = _mapper.Map<List<Project>>(githubProjects);
-            
-            //Delete old projects:
-            await _projectRepository.DeleteAllProjects();
-            //Add updated projects:
-            AddAllProjectsRequestModel requestModel = new AddAllProjectsRequestModel()
-            {
-                Projects = projects
-            };
-            AddAllProjectsResponseModel requestResponse = await _mediator.Send(requestModel);
-           // _projectRepository.AddAllProjects(projects);
-            Console.WriteLine("Request response: " + requestResponse.IsSuccess);
-            Console.WriteLine("Finished Github projects fetch job ...");
-            return "Success";
+            return projects;
         }
         
     }
