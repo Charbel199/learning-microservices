@@ -14,31 +14,31 @@ export class HttpService {
     private httpClient: HttpClient
   ) { }
 
-  public requestCall<responseType>(api: EndPoints, method: ApiMethod, payload?: any): any{
+  public requestCall<responseType>(api: EndPoints, method: ApiMethod, payload?: any): Observable<responseType>{
     let response;
     switch (method) {
       case ApiMethod.GET:
         response = this.httpClient.get<responseType>(`${environment.apiUrl}/${api}`,
           {
-            withCredentials: true
+            withCredentials: false
           }).pipe(catchError(err => this.handleError(err)));
         break;
       case ApiMethod.POST:
         response = this.httpClient.post<responseType>(`${environment.apiUrl}/${api}`, payload,
           {
-            withCredentials: true
+            withCredentials: false
           }).pipe(catchError(err => this.handleError(err)));;
         break;
       case ApiMethod.DELETE:
         response = this.httpClient.delete<responseType>(`${environment.apiUrl}/${api}`,
           {
-            withCredentials: true
+            withCredentials: false
           }).pipe(catchError(err => this.handleError(err)));;
         break;
       case ApiMethod.PUT:
         response = this.httpClient.put<responseType>(`${environment.apiUrl}/${api}`, payload,
           {
-            withCredentials: true
+            withCredentials: false
           }).pipe(catchError(err => this.handleError(err)));;
         break;
       default:

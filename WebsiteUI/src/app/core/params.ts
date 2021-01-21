@@ -7,5 +7,5 @@ export enum ApiMethod{
 
 
 export enum EndPoints{
-
+  GET_PROJECTS = 'github/projects'
 }
