@@ -2,4 +2,21 @@
   position: fixed;
   width: 100vw;
   z-index: 999;
+  background-color: white;
+}
+.navbar-nav{
+  padding-left: 60px;
+}
+.nav-item {
+  font-size: 25px;
+
+}
+.navbar .active{
+  color: black;
+}
+.navbar a{
+  color: black;
+}
+.navbar a:hover{
+  color: gray;
 }
