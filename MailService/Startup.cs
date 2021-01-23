@@ -39,13 +39,13 @@ namespace MailService
                 app.UseDeveloperExceptionPage();
 
             }
-
-            app.UseHttpsRedirection();
+            
 
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
+            app.UseHttpsRedirection();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }

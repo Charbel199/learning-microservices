@@ -17,7 +17,7 @@ export class HttpService {
     let response;
     switch (method) {
       case ApiMethod.POST:
-        response = this.httpClient.post<responseType>(`${environment.apiUrl}/${api}`, payload.toString(),
+        response = this.httpClient.post<responseType>(`${environment.apiUrlNotSafe}/${api}`, payload.toString(),
           {
             withCredentials: false,
             headers: new HttpHeaders()

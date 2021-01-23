@@ -1,6 +1,6 @@
-export class LoginRequest {
+export interface LoginRequest {
   // tslint:disable-next-line:variable-name
-  client_id: number;
+  client_id: string;
   // tslint:disable-next-line:variable-name
   client_secret: string;
   // tslint:disable-next-line:variable-name

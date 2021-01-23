@@ -62,7 +62,7 @@ namespace ApiGateway
 
             await app.UseOcelot();
             
-            app.UseHttpsRedirection();
+            
 
             app.UseRouting();
 
@@ -70,7 +70,7 @@ namespace ApiGateway
 
             //Should change it
             app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
-            
+            app.UseHttpsRedirection();
             //Authentication
             app.UseAuthentication();
             

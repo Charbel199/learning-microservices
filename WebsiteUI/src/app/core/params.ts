@@ -8,6 +8,6 @@ export enum ApiMethod{
 
 export enum EndPoints{
   GET_PROJECTS = 'github/projects',
-  SEND_MAIL = '/mail/send',
-  AUTHENTICATE = '/connect'
+  SEND_MAIL = 'mail/send',
+  AUTHENTICATE = 'connect'
 }

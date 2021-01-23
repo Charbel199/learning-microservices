@@ -15,7 +15,7 @@ export class AuthService {
 
   login(loginRequest: LoginRequest): any{
     const body = new HttpParams()
-      .set('client_id', String(loginRequest.client_id))
+      .set('client_id', loginRequest.client_id)
       .set('client_secret', loginRequest.client_secret)
       .set('grant_type', loginRequest.grant_type)
       .set('scope', loginRequest.scope);

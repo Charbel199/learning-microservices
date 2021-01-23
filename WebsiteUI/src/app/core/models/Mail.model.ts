@@ -1,4 +1,4 @@
-export class Mail{
+export interface Mail{
   Name: string;
   EmailAddress: string;
   Subject: string;

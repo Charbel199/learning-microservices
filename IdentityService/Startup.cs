@@ -65,7 +65,8 @@ namespace IdentityService
             }
 
             app.UseRouting();
-
+            app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
+            app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>

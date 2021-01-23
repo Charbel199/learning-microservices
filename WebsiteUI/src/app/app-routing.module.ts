@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule)
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
