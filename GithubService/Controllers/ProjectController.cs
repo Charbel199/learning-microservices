@@ -31,7 +31,11 @@ namespace GithubService.Controllers
             return Ok(response);
         }
         
-        
+        [HttpPost("test")]
+        public async Task<IActionResult> test()
+        {
+            return Ok(new JsonResult("Nice", "nice"));
+        }
         
     }
 }
