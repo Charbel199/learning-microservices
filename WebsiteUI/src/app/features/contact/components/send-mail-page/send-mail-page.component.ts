@@ -17,10 +17,10 @@ export class SendMailPageComponent implements OnInit {
   }
   sendMail(): any{
     const mail: Mail = {
-      EmailAddress: 'toniboumaroun@hotmail.com',
-      Message: 'Its working',
-      Name: 'Toni',
-      Subject: 'Test'
+      emailAddress: 'toniboumaroun@hotmail.com',
+      message: 'Its working',
+      name: 'Toni',
+      subject: 'Test'
     };
     this.mailService.sendEmail(mail);
   }
