@@ -34,8 +34,9 @@ namespace IdentityService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             var connectionString = Configuration.GetConnectionString("IdentityConnection");
-
+        
             Console.WriteLine("Connection string: "+connectionString);
             Console.WriteLine();
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
@@ -63,8 +64,9 @@ namespace IdentityService
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseRouting();
+            //Should change it
             app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>

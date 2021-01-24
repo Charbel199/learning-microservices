@@ -30,9 +30,10 @@ namespace ApiGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(); 
             services.AddControllers();
+           
             services.AddOcelot(Configuration);
-            
             //For authentication
             var identityBuilder = services.AddAuthentication();
             IdentityServerConfig identityServerConfig = new IdentityServerConfig();
@@ -63,13 +64,14 @@ namespace ApiGateway
             await app.UseOcelot();
             
             
-
+            //Should change it
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());   
             app.UseRouting();
 
             app.UseAuthorization();
-
-            //Should change it
-            app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
             app.UseHttpsRedirection();
             //Authentication
             app.UseAuthentication();

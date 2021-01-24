@@ -13,48 +13,48 @@ export class HttpService {
   constructor(
     private httpClient: HttpClient
   ) { }
-  public requestCallUrlencoded<responseType>(api: EndPoints, method: ApiMethod, payload?: any): Observable<responseType> {
+  public requestCallUrlencoded<responseModel>(api: EndPoints, method: ApiMethod, payload?: any): Observable<responseModel> {
     let response;
     switch (method) {
       case ApiMethod.POST:
-        response = this.httpClient.post<responseType>(`${environment.apiUrlNotSafe}/${api}`, payload.toString(),
+        response = this.httpClient.post<responseModel>(`${environment.apiUrl}/${api}`, payload.toString(),
           {
             withCredentials: false,
             headers: new HttpHeaders()
               .set('Content-Type', 'application/x-www-form-urlencoded')
-          }).pipe(catchError(err => this.handleError(err)));;
+          }).pipe(catchError(err => this.handleError(err)));
         break;
       default:
         break;
     }
     return response;
   }
-  public requestCall<responseType>(api: EndPoints, method: ApiMethod, payload?: any): Observable<responseType>{
+  public requestCall<responseModel>(api: EndPoints, method: ApiMethod, payload?: any): Observable<responseModel>{
     let response;
     switch (method) {
       case ApiMethod.GET:
-        response = this.httpClient.get<responseType>(`${environment.apiUrl}/${api}`,
+        response = this.httpClient.get<responseModel>(`${environment.apiUrl}/${api}`,
           {
             withCredentials: false
           }).pipe(catchError(err => this.handleError(err)));
         break;
       case ApiMethod.POST:
-        response = this.httpClient.post<responseType>(`${environment.apiUrl}/${api}`, payload,
+        response = this.httpClient.post<responseModel>(`${environment.apiUrl}/${api}`, payload,
           {
             withCredentials: false
-          }).pipe(catchError(err => this.handleError(err)));;
+          }).pipe(catchError(err => this.handleError(err)));
         break;
       case ApiMethod.DELETE:
-        response = this.httpClient.delete<responseType>(`${environment.apiUrl}/${api}`,
+        response = this.httpClient.delete<responseModel>(`${environment.apiUrl}/${api}`,
           {
             withCredentials: false
-          }).pipe(catchError(err => this.handleError(err)));;
+          }).pipe(catchError(err => this.handleError(err)));
         break;
       case ApiMethod.PUT:
-        response = this.httpClient.put<responseType>(`${environment.apiUrl}/${api}`, payload,
+        response = this.httpClient.put<responseModel>(`${environment.apiUrl}/${api}`, payload,
           {
             withCredentials: false
-          }).pipe(catchError(err => this.handleError(err)));;
+          }).pipe(catchError(err => this.handleError(err)));
         break;
       default:
         break;

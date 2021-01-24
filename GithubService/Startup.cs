@@ -36,7 +36,7 @@ namespace GithubService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-       
+            services.AddCors();
             services.AddHangfire(config =>
                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                     .UseSimpleAssemblyNameTypeSerializer()
@@ -70,15 +70,18 @@ namespace GithubService
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            
+            //Should change it
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            //Should change it
-            app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
+  
+           
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 

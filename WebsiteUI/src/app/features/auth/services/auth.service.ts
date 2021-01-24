@@ -21,6 +21,7 @@ export class AuthService {
       .set('scope', loginRequest.scope);
     this.http.requestCallUrlencoded<any>(EndPoints.AUTHENTICATE, ApiMethod.POST, body).subscribe( res => {
       console.log(res);
+      return res;
     }, error => {},
       () => {});
   }

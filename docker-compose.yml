@@ -6,6 +6,7 @@ services:
     container_name: githubserviceapi
     depends_on:
       - apigateway
+      - githubservicestore
     
   identityapi:
     image: ${ID}/identityserviceapi:1.0
@@ -28,7 +29,8 @@ services:
     ports:
       - "8082:80"
       - "8083:443"
-    
+ 
+  
   
   
   apigateway:

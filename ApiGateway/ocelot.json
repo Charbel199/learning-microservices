@@ -11,7 +11,7 @@
       ],
       "UpstreamPathTemplate": "/github/{everything}",
       "UpstreamHttpMethod": [
-        "Get"
+        "Get","Post","Options"
       ]
     },
     {
@@ -25,7 +25,7 @@
       ],
       "UpstreamPathTemplate": "/connect",
       "UpstreamHttpMethod": [
-        "Get","Post"
+        "Get","Post","Options"
       ]
     },
     {
@@ -40,7 +40,7 @@
       ],
       "UpstreamPathTemplate": "/mail/send",
       "UpstreamHttpMethod": [
-        "Get","Post"
+        "Get","Post","Options"
       ]
     }
     ],

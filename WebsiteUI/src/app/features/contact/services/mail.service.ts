@@ -15,7 +15,10 @@ export class MailService {
   sendEmail(mail: Mail): any{
     this.http.requestCall<any>(EndPoints.SEND_MAIL, ApiMethod.POST, mail).subscribe( res => {
       console.log(res);
-    }, error => {},
+      return res;
+    }, error => {
+      console.log('Error: ', error)
+      },
       () => {
 
     });

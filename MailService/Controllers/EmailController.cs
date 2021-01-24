@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MailService.Dtos;
 using MailService.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailService.Controllers
@@ -16,10 +17,21 @@ namespace MailService.Controllers
         {
             _emailService = emailService;
         }
+
         [HttpPost("send")]
         public IActionResult SendMail(SendMailDto mail)
         {
             return Ok(_emailService.sendEmail(mail));
+        }
+        [HttpPost("test")]
+        public IActionResult SendMailTest(SendMailDto mail)
+        {
+            return Ok(mail);
+        }
+        [HttpGet("get")]
+        public IActionResult GetMailTest()
+        {
+            return Ok("Hi");
         }
     }
     

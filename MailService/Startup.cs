@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MailService.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -22,12 +23,14 @@ namespace MailService
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
+        private IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();  
             services.AddControllers();
+            
+            
             services.AddScoped<IEmailService, EmailService>();
         }
 
@@ -37,16 +40,20 @@ namespace MailService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
             }
-            
+            //Should change it
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());        
 
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());//ONLY FOR DEV
+            
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
         }
     }
 }
