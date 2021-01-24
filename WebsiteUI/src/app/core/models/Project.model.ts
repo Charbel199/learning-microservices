@@ -1,11 +1,11 @@
 export interface Project {
-  Id: number;
-  Name: string;
-  Description: string;
-  CreatedAt: string;
-  Size: number;
-  Language: string;
-  Stars: number;
-  Forks: number;
-  Link: string;
+  id: number;
+  name: string;
+  description: string;
+  createdAt: string;
+  size: number;
+  language: string;
+  stars: number;
+  forks: number;
+  link: string;
 }

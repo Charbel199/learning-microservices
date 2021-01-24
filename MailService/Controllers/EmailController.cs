@@ -23,16 +23,7 @@ namespace MailService.Controllers
         {
             return Ok(_emailService.sendEmail(mail));
         }
-        [HttpPost("test")]
-        public IActionResult SendMailTest(SendMailDto mail)
-        {
-            return Ok(mail);
-        }
-        [HttpGet("get")]
-        public IActionResult GetMailTest()
-        {
-            return Ok("Hi");
-        }
+
     }
     
     

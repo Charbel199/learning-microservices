@@ -13,11 +13,12 @@ export class MailService {
   ) { }
 
   sendEmail(mail: Mail): any{
-    this.http.requestCall<any>(EndPoints.SEND_MAIL, ApiMethod.POST, mail).subscribe( res => {
+    this.http.requestCall<Mail>(EndPoints.SEND_MAIL, ApiMethod.POST, mail).subscribe( res => {
       console.log(res);
+      console.log('Sent by ', res.emailAddress);
       return res;
     }, error => {
-      console.log('Error: ', error)
+      console.log('Error: ', error);
       },
       () => {
 

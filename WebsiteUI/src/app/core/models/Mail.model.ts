@@ -1,6 +1,6 @@
 export interface Mail{
-  Name: string;
-  EmailAddress: string;
-  Subject: string;
-  Message: string;
+  name: string;
+  emailAddress: string;
+  subject: string;
+  message: string;
 }
