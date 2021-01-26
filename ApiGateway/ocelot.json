@@ -12,7 +12,11 @@
       "UpstreamPathTemplate": "/github/{everything}",
       "UpstreamHttpMethod": [
         "Get","Post","Options"
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "APIservice",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/connect/token",

@@ -22,7 +22,7 @@ export class LoginPageComponent implements OnInit {
       client_secret: 'secret',
       grant_type: 'client_credentials',
       scope: 'read write'
-    }
+    };
     this.authService.login(
       request
     );

@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "Qp9BxbgorXiwUkdDjH2cBIKBT8ZwGUcu1to0U9eAuvFv40yf12Q+cgQUO3v3Hva6SqHdzvhGcpSGYSWOkn5uNw==",
+  "dgSpecHash": "yPBhAz9P+MO39BDy24JVpxxME0zYB0bOdXHrpRDXYMwEWQY5B95CmBqZ/y7PApTecLSx3x8ZrvUzhLwd3yPiMw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Intel\\Desktop\\Projects\\MyWebsite\\IdentityService\\IdentityService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Intel\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\Intel\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Intel\\.nuget\\packages\\identitymodel\\4.4.0\\identitymodel.4.4.0.nupkg.sha512",
+    "C:\\Users\\Intel\\.nuget\\packages\\identitymodel.aspnetcore.oauth2introspection\\4.0.1\\identitymodel.aspnetcore.oauth2introspection.4.0.1.nupkg.sha512",
     "C:\\Users\\Intel\\.nuget\\packages\\identityserver4\\4.1.1\\identityserver4.4.1.1.nupkg.sha512",
+    "C:\\Users\\Intel\\.nuget\\packages\\identityserver4.accesstokenvalidation\\3.0.1\\identityserver4.accesstokenvalidation.3.0.1.nupkg.sha512",
     "C:\\Users\\Intel\\.nuget\\packages\\identityserver4.entityframework\\4.1.1\\identityserver4.entityframework.4.1.1.nupkg.sha512",
     "C:\\Users\\Intel\\.nuget\\packages\\identityserver4.entityframework.storage\\4.1.1\\identityserver4.entityframework.storage.4.1.1.nupkg.sha512",
     "C:\\Users\\Intel\\.nuget\\packages\\identityserver4.storage\\4.1.1\\identityserver4.storage.4.1.1.nupkg.sha512",

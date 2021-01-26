@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiGateway.Models;
 using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,22 +36,17 @@ namespace ApiGateway
            
             services.AddOcelot(Configuration);
             //For authentication
-            var identityBuilder = services.AddAuthentication();
-            IdentityServerConfig identityServerConfig = new IdentityServerConfig();
-            Configuration.Bind("IdentityServerConfig", identityServerConfig);
-            if (identityServerConfig != null && identityServerConfig.Resources != null)
-            {
-                foreach (var resource in identityServerConfig.Resources)
+            
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer("APIservice", options =>
                 {
-                    identityBuilder.AddIdentityServerAuthentication(resource.Key, options => 
-                    {
-                        options.Authority = $"http://{identityServerConfig.IP}:{identityServerConfig.Port}";
-                        options.RequireHttpsMetadata = false;
-                        options.ApiName = resource.Name;
-                        options.SupportedTokens = SupportedTokens.Both;
-                    });
-                }
-            }
+                    // base-address of your identityserver
+                    options.Authority = "http://identityapi";
+                    options.RequireHttpsMetadata = false;
+                    // name of the API resource
+                    options.Audience = "identitygithubservice";
+                });
+       
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
