@@ -1,16 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-landing-page',
+  templateUrl: './landing-page.component.html',
+  styleUrls: ['./landing-page.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class LandingPageComponent implements OnInit {
 
   constructor() {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.changeClassColor('white', 'navitem');
     window.addEventListener('scroll', this.scroll, true);
   }

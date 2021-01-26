@@ -13,6 +13,7 @@ export class ProjectsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
   getProjects(){

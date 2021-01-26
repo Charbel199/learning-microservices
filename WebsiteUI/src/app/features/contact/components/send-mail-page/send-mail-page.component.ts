@@ -14,6 +14,7 @@ export class SendMailPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
   sendMail(): any{
     const mail: Mail = {
