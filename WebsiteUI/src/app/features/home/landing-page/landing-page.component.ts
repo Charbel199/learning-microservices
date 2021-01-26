@@ -43,5 +43,10 @@ export class LandingPageComponent implements OnInit {
     }
   }
 
+  scrollDown(): void{
+    document.querySelector('.content').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
 
 }
