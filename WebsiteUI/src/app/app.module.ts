@@ -9,6 +9,7 @@ import {SharedModule} from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor} from './core/interceptors/AuthInterceptor';
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
