@@ -3,6 +3,9 @@ import {HttpService} from '../../../core/services/http/http.service';
 import {ApiMethod, EndPoints} from '../../../core/params';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Project} from '../../../core/models/Project.model';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {Projects} from '../../models/Projects.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,18 +15,8 @@ export class ProjectsService {
     private http: HttpService
   ) { }
 
-  getProjectList(): any{
-    this.http.requestCall<Project[]>(EndPoints.GET_PROJECTS, ApiMethod.GET).subscribe(
-      res => {
-        console.log('Got projects: ', res);
-        return res;
-      },
-      error => {
-        console.log('Error: ', error);
-      },
-      () => {
-        console.log('Done');
-       }
-    );
+  getProjectList(): Observable<Project[]>{
+    return this.http.requestCall<Projects>(EndPoints.GET_PROJECTS, ApiMethod.GET)
+      .pipe(map(x => x.projects));
   }
 }

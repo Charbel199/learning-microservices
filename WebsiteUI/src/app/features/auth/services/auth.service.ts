@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpService} from '../../../core/services/http/http.service';
 import {ApiMethod, EndPoints} from '../../../core/params';
 import {HttpParams} from '@angular/common/http';
-import {LoginRequest} from '../,models/LoginRequest.model';
-import {LoginResponse} from '../,models/LoginResponse.modele';
+import {LoginRequest} from '../models/LoginRequest.model';
+import {LoginResponse} from '../models/LoginResponse.modele';
 
 @Injectable({
   providedIn: 'root'

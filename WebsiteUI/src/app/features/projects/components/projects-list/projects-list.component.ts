@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ProjectsService} from '../../services/projects.service';
+import {ProjectsService} from '../../../../shared/services/projects/projects.service';
 
 @Component({
   selector: 'app-projects-list',
@@ -17,6 +17,10 @@ export class ProjectsListComponent implements OnInit {
   }
 
   getProjects(){
-    this.projectsService.getProjectList();
+    this.projectsService.getProjectList().subscribe(
+      res => {
+        console.log(res);
+      }
+    );
   }
 }
