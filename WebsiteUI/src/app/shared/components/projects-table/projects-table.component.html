@@ -1,0 +1,26 @@
+
+
+<table class="table table-striped" *ngIf="projects$ | async as projects">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Description</th>
+    <th scope="col">Language</th>
+    <th scope="col">Stars</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let project of projects; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td><a href="{{project.link }}" target="_blank"> {{project.name}}</a>
+    </td>
+    <td>{{ project.description }}</td>
+    <td>{{ project.language }}</td>
+    <td>{{ project.stars }}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+

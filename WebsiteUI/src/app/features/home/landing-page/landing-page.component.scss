@@ -1,0 +1,63 @@
+.top-bg{
+  background-image: url(../../../../assets/static/images/home_img.jpg);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.landing-title{
+  color: white;
+  width: 70%;
+}
+
+.center{
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.title-main{
+  letter-spacing: 15px;
+  font-size: 35px;
+}
+.title-major{
+
+}
+
+.social{
+  position: absolute;
+  top: 50%;
+  left: 0%;
+}
+
+.social-item{
+  padding: 5px;
+}
+.know-more{
+  position: absolute;
+  text-align: center;
+  left: calc(50% - 100px);
+  top: calc(100% - 120px);
+}
+
+.know-more-title{
+  color: white;
+  font-size: 20px;
+}
+
+.helv{
+  font-family: Helvetica;
+}
+
+.bgDark{
+  background-color: #191919;
+}
+.project-list{
+  padding-top: 100px;
+  padding-bottom: 100px;
+  color: black;
+}
+.project-list-tile{
+
+}

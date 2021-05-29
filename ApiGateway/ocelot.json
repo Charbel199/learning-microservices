@@ -1,0 +1,49 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/test/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "githubapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/github/{everything}",
+      "UpstreamHttpMethod": [
+        "Get","Post","Options"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identityapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/connect",
+      "UpstreamHttpMethod": [
+        "Get","Post","Options"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/mail/send",
+      "DownstreamScheme": "https",
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mailapi",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/mail/send",
+      "UpstreamHttpMethod": [
+        "Get","Post","Options"
+      ]
+    }
+    ],
+  "GlobalConfiguration": {
+  }
+}
